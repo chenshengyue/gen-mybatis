@@ -1,0 +1,716 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seatent.uranus.dao.b2c.B2cBargainInfoDao">
+
+    <resultMap id="BaseResultMap" type="com.seatent.uranus.entity.b2c.B2cBargainInfo">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="site_id" jdbcType="CHAR" property="siteId"/>
+        <result column="b_user_id" jdbcType="CHAR" property="bUserId"/>
+        <result column="c_user_id" jdbcType="CHAR" property="cUserId"/>
+        <result column="activity_id" jdbcType="CHAR" property="activityId"/>
+        <result column="bargain_amount" jdbcType="DECIMAL" property="bargainAmount"/>
+        <result column="remain_bargain_amount" jdbcType="DECIMAL" property="remainBargainAmount"/>
+        <result column="already_bargain_count" jdbcType="INTEGER" property="alreadyBargainCount"/>
+        <result column="bargain_count" jdbcType="INTEGER" property="bargainCount"/>
+        <result column="bargain_end_time" jdbcType="TIMESTAMP" property="bargainEndTime"/>
+        <result column="purchase_limit" jdbcType="INTEGER" property="purchaseLimit"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="adjust_depot_status" jdbcType="INTEGER" property="adjustDepotStatus"/>
+        <result column="finish_soon_status" jdbcType="INTEGER" property="finishSoonStatus"/>
+        <result column="finish_status" jdbcType="INTEGER" property="finishStatus"/>
+        <result column="fail_status" jdbcType="INTEGER" property="failStatus"/>
+        <result column="order_id" jdbcType="CHAR" property="orderId"/>
+        <result column="order_sn" jdbcType="VARCHAR" property="orderSn"/>
+        <result column="bargain_success_time" jdbcType="TIMESTAMP" property="bargainSuccessTime"/>
+        <result column="pay_time" jdbcType="TIMESTAMP" property="payTime"/>
+        <result column="attribute" jdbcType="LONGVARCHAR" property="attribute"/>
+        <result column="attribute_version" jdbcType="INTEGER" property="attributeVersion"/>
+        <result column="deleted" jdbcType="BIT" property="deleted"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+
+    <delete id="delete">
+        delete from hd_b2c_bargain_info
+        <include refid="findCondition" />
+    </delete>
+
+    <update id="logicDelete">
+        update hd_b2c_bargain_info
+        set deleted = 1
+        <include refid="findCondition" />
+    </update>
+
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.seatent.uranus.entity.b2c.B2cBargainInfo" useGeneratedKeys="true">
+        insert into hd_b2c_bargain_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="siteId !=null">
+                site_id,
+            </if>
+            <if test="bUserId !=null">
+                b_user_id,
+            </if>
+            <if test="cUserId !=null">
+                c_user_id,
+            </if>
+            <if test="activityId !=null">
+                activity_id,
+            </if>
+            <if test="bargainAmount !=null">
+                bargain_amount,
+            </if>
+            <if test="remainBargainAmount !=null">
+                remain_bargain_amount,
+            </if>
+            <if test="alreadyBargainCount !=null">
+                already_bargain_count,
+            </if>
+            <if test="bargainCount !=null">
+                bargain_count,
+            </if>
+            <if test="bargainEndTime !=null">
+                bargain_end_time,
+            </if>
+            <if test="purchaseLimit !=null">
+                purchase_limit,
+            </if>
+            <if test="status !=null">
+                status,
+            </if>
+            <if test="adjustDepotStatus !=null">
+                adjust_depot_status,
+            </if>
+            <if test="finishSoonStatus !=null">
+                finish_soon_status,
+            </if>
+            <if test="finishStatus !=null">
+                finish_status,
+            </if>
+            <if test="failStatus !=null">
+                fail_status,
+            </if>
+            <if test="orderId !=null">
+                order_id,
+            </if>
+            <if test="orderSn !=null">
+                order_sn,
+            </if>
+            <if test="bargainSuccessTime !=null">
+                bargain_success_time,
+            </if>
+            <if test="payTime !=null">
+                pay_time,
+            </if>
+            <if test="attribute !=null">
+                attribute,
+            </if>
+            <if test="attributeVersion !=null">
+                attribute_version,
+            </if>
+            <if test="deleted !=null">
+                deleted,
+            </if>
+            <if test="createTime !=null">
+                create_time,
+            </if>
+            <if test="updateTime !=null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="siteId !=null">
+                #{siteId},
+            </if>
+            <if test="bUserId !=null">
+                #{bUserId},
+            </if>
+            <if test="cUserId !=null">
+                #{cUserId},
+            </if>
+            <if test="activityId !=null">
+                #{activityId},
+            </if>
+            <if test="bargainAmount !=null">
+                #{bargainAmount},
+            </if>
+            <if test="remainBargainAmount !=null">
+                #{remainBargainAmount},
+            </if>
+            <if test="alreadyBargainCount !=null">
+                #{alreadyBargainCount},
+            </if>
+            <if test="bargainCount !=null">
+                #{bargainCount},
+            </if>
+            <if test="bargainEndTime !=null">
+                #{bargainEndTime},
+            </if>
+            <if test="purchaseLimit !=null">
+                #{purchaseLimit},
+            </if>
+            <if test="status !=null">
+                #{status},
+            </if>
+            <if test="adjustDepotStatus !=null">
+                #{adjustDepotStatus},
+            </if>
+            <if test="finishSoonStatus !=null">
+                #{finishSoonStatus},
+            </if>
+            <if test="finishStatus !=null">
+                #{finishStatus},
+            </if>
+            <if test="failStatus !=null">
+                #{failStatus},
+            </if>
+            <if test="orderId !=null">
+                #{orderId},
+            </if>
+            <if test="orderSn !=null">
+                #{orderSn},
+            </if>
+            <if test="bargainSuccessTime !=null">
+                #{bargainSuccessTime},
+            </if>
+            <if test="payTime !=null">
+                #{payTime},
+            </if>
+            <if test="attribute !=null">
+                #{attribute},
+            </if>
+            <if test="attributeVersion !=null">
+                #{attributeVersion},
+            </if>
+            <if test="deleted !=null">
+                #{deleted},
+            </if>
+            <if test="createTime !=null">
+                #{createTime},
+            </if>
+            <if test="updateTime !=null">
+                #{updateTime},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateById">
+        update hd_b2c_bargain_info
+        <set>
+            <if test="record.siteId !=null">
+                site_id = #{record.siteId},
+            </if>
+            <if test="record.bUserId !=null">
+                b_user_id = #{record.bUserId},
+            </if>
+            <if test="record.cUserId !=null">
+                c_user_id = #{record.cUserId},
+            </if>
+            <if test="record.activityId !=null">
+                activity_id = #{record.activityId},
+            </if>
+            <if test="record.bargainAmount !=null">
+                bargain_amount = #{record.bargainAmount},
+            </if>
+            <if test="record.remainBargainAmount !=null">
+                remain_bargain_amount = #{record.remainBargainAmount},
+            </if>
+            <if test="record.alreadyBargainCount !=null">
+                already_bargain_count = #{record.alreadyBargainCount},
+            </if>
+            <if test="record.bargainCount !=null">
+                bargain_count = #{record.bargainCount},
+            </if>
+            <if test="record.bargainEndTime !=null">
+                bargain_end_time = #{record.bargainEndTime},
+            </if>
+            <if test="record.purchaseLimit !=null">
+                purchase_limit = #{record.purchaseLimit},
+            </if>
+            <if test="record.status !=null">
+                status = #{record.status},
+            </if>
+            <if test="record.adjustDepotStatus !=null">
+                adjust_depot_status = #{record.adjustDepotStatus},
+            </if>
+            <if test="record.finishSoonStatus !=null">
+                finish_soon_status = #{record.finishSoonStatus},
+            </if>
+            <if test="record.finishStatus !=null">
+                finish_status = #{record.finishStatus},
+            </if>
+            <if test="record.failStatus !=null">
+                fail_status = #{record.failStatus},
+            </if>
+            <if test="record.orderId !=null">
+                order_id = #{record.orderId},
+            </if>
+            <if test="record.orderSn !=null">
+                order_sn = #{record.orderSn},
+            </if>
+            <if test="record.bargainSuccessTime !=null">
+                bargain_success_time = #{record.bargainSuccessTime},
+            </if>
+            <if test="record.payTime !=null">
+                pay_time = #{record.payTime},
+            </if>
+            <if test="record.attribute !=null">
+                attribute = #{record.attribute},
+            </if>
+            <if test="record.attributeVersion !=null">
+                attribute_version = #{record.attributeVersion},
+            </if>
+            <if test="record.deleted !=null">
+                deleted = #{record.deleted},
+            </if>
+            <if test="record.createTime !=null">
+                create_time = #{record.createTime},
+            </if>
+            <if test="record.updateTime !=null">
+                update_time = #{record.updateTime},
+            </if>
+        </set>
+        where id = #{record.id} and site_id = #{record.siteId}
+    </update>
+
+    <update id="updateByCondition">
+        update hd_b2c_bargain_info
+        <set>
+            <if test="record.siteId !=null">
+                site_id = #{record.siteId},
+            </if>
+            <if test="record.bUserId !=null">
+                b_user_id = #{record.bUserId},
+            </if>
+            <if test="record.cUserId !=null">
+                c_user_id = #{record.cUserId},
+            </if>
+            <if test="record.activityId !=null">
+                activity_id = #{record.activityId},
+            </if>
+            <if test="record.bargainAmount !=null">
+                bargain_amount = #{record.bargainAmount},
+            </if>
+            <if test="record.remainBargainAmount !=null">
+                remain_bargain_amount = #{record.remainBargainAmount},
+            </if>
+            <if test="record.alreadyBargainCount !=null">
+                already_bargain_count = #{record.alreadyBargainCount},
+            </if>
+            <if test="record.bargainCount !=null">
+                bargain_count = #{record.bargainCount},
+            </if>
+            <if test="record.bargainEndTime !=null">
+                bargain_end_time = #{record.bargainEndTime},
+            </if>
+            <if test="record.purchaseLimit !=null">
+                purchase_limit = #{record.purchaseLimit},
+            </if>
+            <if test="record.status !=null">
+                status = #{record.status},
+            </if>
+            <if test="record.adjustDepotStatus !=null">
+                adjust_depot_status = #{record.adjustDepotStatus},
+            </if>
+            <if test="record.finishSoonStatus !=null">
+                finish_soon_status = #{record.finishSoonStatus},
+            </if>
+            <if test="record.finishStatus !=null">
+                finish_status = #{record.finishStatus},
+            </if>
+            <if test="record.failStatus !=null">
+                fail_status = #{record.failStatus},
+            </if>
+            <if test="record.orderId !=null">
+                order_id = #{record.orderId},
+            </if>
+            <if test="record.orderSn !=null">
+                order_sn = #{record.orderSn},
+            </if>
+            <if test="record.bargainSuccessTime !=null">
+                bargain_success_time = #{record.bargainSuccessTime},
+            </if>
+            <if test="record.payTime !=null">
+                pay_time = #{record.payTime},
+            </if>
+            <if test="record.attribute !=null">
+                attribute = #{record.attribute},
+            </if>
+            <if test="record.attributeVersion !=null">
+                attribute_version = #{record.attributeVersion},
+            </if>
+            <if test="record.deleted !=null">
+                deleted = #{record.deleted},
+            </if>
+            <if test="record.updateTime !=null">
+                update_time = #{record.updateTime},
+            </if>
+        </set>
+        <where>
+            <if test="condition.id !=null">
+                and id = #{condition.id}
+            </if>
+            <if test="condition.siteId !=null">
+                and site_id = #{condition.siteId}
+            </if>
+            <if test="condition.bUserId !=null">
+                and b_user_id = #{condition.bUserId}
+            </if>
+            <if test="condition.cUserId !=null">
+                and c_user_id = #{condition.cUserId}
+            </if>
+            <if test="condition.activityId !=null">
+                and activity_id = #{condition.activityId}
+            </if>
+            <if test="condition.bargainAmount !=null">
+                and bargain_amount = #{condition.bargainAmount}
+            </if>
+            <if test="condition.remainBargainAmount !=null">
+                and remain_bargain_amount = #{condition.remainBargainAmount}
+            </if>
+            <if test="condition.alreadyBargainCount !=null">
+                and already_bargain_count = #{condition.alreadyBargainCount}
+            </if>
+            <if test="condition.bargainCount !=null">
+                and bargain_count = #{condition.bargainCount}
+            </if>
+            <if test="condition.bargainEndTime !=null">
+                and bargain_end_time = #{condition.bargainEndTime}
+            </if>
+            <if test="condition.purchaseLimit !=null">
+                and purchase_limit = #{condition.purchaseLimit}
+            </if>
+            <if test="condition.status !=null">
+                and status = #{condition.status}
+            </if>
+            <if test="condition.adjustDepotStatus !=null">
+                and adjust_depot_status = #{condition.adjustDepotStatus}
+            </if>
+            <if test="condition.finishSoonStatus !=null">
+                and finish_soon_status = #{condition.finishSoonStatus}
+            </if>
+            <if test="condition.finishStatus !=null">
+                and finish_status = #{condition.finishStatus}
+            </if>
+            <if test="condition.failStatus !=null">
+                and fail_status = #{condition.failStatus}
+            </if>
+            <if test="condition.orderId !=null">
+                and order_id = #{condition.orderId}
+            </if>
+            <if test="condition.orderSn !=null">
+                and order_sn = #{condition.orderSn}
+            </if>
+            <if test="condition.bargainSuccessTime !=null">
+                and bargain_success_time = #{condition.bargainSuccessTime}
+            </if>
+            <if test="condition.payTime !=null">
+                and pay_time = #{condition.payTime}
+            </if>
+            <if test="condition.attribute !=null">
+                and attribute = #{condition.attribute}
+            </if>
+            <if test="condition.attributeVersion !=null">
+                and attribute_version = #{condition.attributeVersion}
+            </if>
+            <if test="condition.deleted !=null">
+                and deleted = #{condition.deleted}
+            </if>
+            <if test="condition.updateTime !=null">
+                and update_time = #{condition.updateTime}
+            </if>
+
+            <if test="condition.idNotEqualTo != null">
+                and id != #{condition.idNotEqualTo}
+            </if>
+            <if test="condition.oldAlreadyBargainCountEqualTo != null">
+                and already_bargain_count = #{condition.oldAlreadyBargainCountEqualTo}
+            </if>
+            <if test="condition.oldStatusEqualTo != null">
+                and status = #{condition.oldStatusEqualTo}
+            </if>
+            <if test="condition.oldStatuses != null">
+                and status in
+                <foreach item="item" collection="condition.oldStatuses" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+    </update>
+
+    <select id="getById" resultMap="BaseResultMap">
+        <include refid="findColumn" />
+        where id = #{id} and site_id = #{siteId}
+    </select>
+
+    <select id="countByQuery" resultType="java.lang.Integer">
+        select count(1) from hd_b2c_bargain_info
+        <include refid="findCondition" />
+    </select>
+
+    <select id="selectByQuery" resultMap="BaseResultMap">
+        <include refid="findColumn" />
+        <include refid="findCondition" />
+    </select>
+
+    <select id="selectByQueryWithPage" parameterType="map" resultMap="BaseResultMap">
+        <include refid="findColumn" />
+        <include refid="findConditionWithPage" />
+    </select>
+
+    <sql id="baseColumnList">
+        id, 
+        site_id, 
+        b_user_id, 
+        c_user_id, 
+        activity_id, 
+        bargain_amount, 
+        remain_bargain_amount, 
+        already_bargain_count, 
+        bargain_count, 
+        bargain_end_time, 
+        purchase_limit, 
+        status, 
+        adjust_depot_status, 
+        finish_soon_status, 
+        finish_status, 
+        fail_status, 
+        order_id, 
+        order_sn, 
+        bargain_success_time, 
+        pay_time, 
+        attribute, 
+        attribute_version, 
+        deleted, 
+        create_time, 
+        update_time
+    </sql>
+
+    <sql id="findColumn">
+        select
+        <include refid="baseColumnList" />
+        from hd_b2c_bargain_info
+    </sql>
+
+    <sql id="findCondition">
+        <where>
+            <if test="query.id != null">
+                and id = #{query.id}
+            </if>
+            <if test="query.siteId != null">
+                and site_id = #{query.siteId}
+            </if>
+            <if test="query.bUserId != null">
+                and b_user_id = #{query.bUserId}
+            </if>
+            <if test="query.cUserId != null">
+                and c_user_id = #{query.cUserId}
+            </if>
+            <if test="query.activityId != null">
+                and activity_id = #{query.activityId}
+            </if>
+            <if test="query.bargainAmount != null">
+                and bargain_amount = #{query.bargainAmount}
+            </if>
+            <if test="query.remainBargainAmount != null">
+                and remain_bargain_amount = #{query.remainBargainAmount}
+            </if>
+            <if test="query.alreadyBargainCount != null">
+                and already_bargain_count = #{query.alreadyBargainCount}
+            </if>
+            <if test="query.bargainCount != null">
+                and bargain_count = #{query.bargainCount}
+            </if>
+            <if test="query.bargainEndTime != null">
+                and bargain_end_time = #{query.bargainEndTime}
+            </if>
+            <if test="query.purchaseLimit != null">
+                and purchase_limit = #{query.purchaseLimit}
+            </if>
+            <if test="query.status != null">
+                and status = #{query.status}
+            </if>
+            <if test="query.adjustDepotStatus != null">
+                and adjust_depot_status = #{query.adjustDepotStatus}
+            </if>
+            <if test="query.finishSoonStatus != null">
+                and finish_soon_status = #{query.finishSoonStatus}
+            </if>
+            <if test="query.finishStatus != null">
+                and finish_status = #{query.finishStatus}
+            </if>
+            <if test="query.failStatus != null">
+                and fail_status = #{query.failStatus}
+            </if>
+            <if test="query.orderId != null">
+                and order_id = #{query.orderId}
+            </if>
+            <if test="query.orderSn != null">
+                and order_sn = #{query.orderSn}
+            </if>
+            <if test="query.bargainSuccessTime != null">
+                and bargain_success_time = #{query.bargainSuccessTime}
+            </if>
+            <if test="query.payTime != null">
+                and pay_time = #{query.payTime}
+            </if>
+            <if test="query.attribute != null">
+                and attribute = #{query.attribute}
+            </if>
+            <if test="query.attributeVersion != null">
+                and attribute_version = #{query.attributeVersion}
+            </if>
+            <if test="query.deleted != null">
+                and deleted = #{query.deleted}
+            </if>
+            <if test="query.createTime != null">
+                and create_time = #{query.createTime}
+            </if>
+            <if test="query.updateTime != null">
+                and update_time = #{query.updateTime}
+            </if>
+
+            <if test="query.ids != null">
+                and id in
+                <foreach item="item" collection="query.ids" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="query.bUserIds != null">
+                and b_user_id in
+                <foreach item="item" collection="query.bUserIds" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="query.bargainEndTimeGreaterThan != null">
+                and bargain_end_time &gt; #{query.bargainEndTimeGreaterThan}
+            </if>
+            <if test="query.bargainEndTimeLessThan != null">
+                and bargain_end_time &lt; #{query.bargainEndTimeLessThan}
+            </if>
+            <if test="query.createTimeGreaterThan != null">
+                and create_time &gt; #{query.createTimeGreaterThan}
+            </if>
+            <if test="query.createTimeLessThan != null">
+                and create_time &lt; #{query.createTimeLessThan}
+            </if>
+            <if test="query.statuses != null">
+                and status in
+                <foreach item="item" collection="query.statuses" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+    </sql>
+
+    <sql id="findConditionWithPage">
+        <where>
+            <if test="param1.id != null">
+                and id = #{param1.id}
+            </if>
+            <if test="param1.siteId != null">
+                and site_id = #{param1.siteId}
+            </if>
+            <if test="param1.bUserId != null">
+                and b_user_id = #{param1.bUserId}
+            </if>
+            <if test="param1.cUserId != null">
+                and c_user_id = #{param1.cUserId}
+            </if>
+            <if test="param1.activityId != null">
+                and activity_id = #{param1.activityId}
+            </if>
+            <if test="param1.bargainAmount != null">
+                and bargain_amount = #{param1.bargainAmount}
+            </if>
+            <if test="param1.remainBargainAmount != null">
+                and remain_bargain_amount = #{param1.remainBargainAmount}
+            </if>
+            <if test="param1.alreadyBargainCount != null">
+                and already_bargain_count = #{param1.alreadyBargainCount}
+            </if>
+            <if test="param1.bargainCount != null">
+                and bargain_count = #{param1.bargainCount}
+            </if>
+            <if test="param1.bargainEndTime != null">
+                and bargain_end_time = #{param1.bargainEndTime}
+            </if>
+            <if test="param1.purchaseLimit != null">
+                and purchase_limit = #{param1.purchaseLimit}
+            </if>
+            <if test="param1.status != null">
+                and status = #{param1.status}
+            </if>
+            <if test="param1.adjustDepotStatus != null">
+                and adjust_depot_status = #{param1.adjustDepotStatus}
+            </if>
+            <if test="param1.finishSoonStatus != null">
+                and finish_soon_status = #{param1.finishSoonStatus}
+            </if>
+            <if test="param1.finishStatus != null">
+                and finish_status = #{param1.finishStatus}
+            </if>
+            <if test="param1.failStatus != null">
+                and fail_status = #{param1.failStatus}
+            </if>
+            <if test="param1.orderId != null">
+                and order_id = #{param1.orderId}
+            </if>
+            <if test="param1.orderSn != null">
+                and order_sn = #{param1.orderSn}
+            </if>
+            <if test="param1.bargainSuccessTime != null">
+                and bargain_success_time = #{param1.bargainSuccessTime}
+            </if>
+            <if test="param1.payTime != null">
+                and pay_time = #{param1.payTime}
+            </if>
+            <if test="param1.attribute != null">
+                and attribute = #{param1.attribute}
+            </if>
+            <if test="param1.attributeVersion != null">
+                and attribute_version = #{param1.attributeVersion}
+            </if>
+            <if test="param1.deleted != null">
+                and deleted = #{param1.deleted}
+            </if>
+            <if test="param1.createTime != null">
+                and create_time = #{param1.createTime}
+            </if>
+            <if test="param1.updateTime != null">
+                and update_time = #{param1.updateTime}
+            </if>
+
+            <if test="param1.ids != null">
+                and id in
+                <foreach item="item" collection="param1.ids" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="param1.bUserIds != null">
+                and b_user_id in
+                <foreach item="item" collection="param1.bUserIds" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="param1.bargainEndTimeGreaterThan != null">
+                and bargain_end_time &gt; #{param1.bargainEndTimeGreaterThan}
+            </if>
+            <if test="param1.bargainEndTimeLessThan != null">
+                and bargain_end_time &lt; #{param1.bargainEndTimeLessThan}
+            </if>
+            <if test="param1.createTimeGreaterThan != null">
+                and create_time &gt; #{param1.createTimeGreaterThan}
+            </if>
+            <if test="param1.createTimeLessThan != null">
+                and create_time &lt; #{param1.createTimeLessThan}
+            </if>
+            <if test="param1.statuses != null">
+                and status in
+                <foreach item="item" collection="param1.statuses" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+    </sql>
+
+</mapper>

@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seatent.uranus.dao.b2c.B2cActivityThresholdRecordDao">
+
+    <resultMap id="BaseResultMap" type="com.seatent.uranus.entity.b2c.B2cActivityThresholdRecord">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="site_id" jdbcType="VARCHAR" property="siteId"/>
+        <result column="account_id" jdbcType="CHAR" property="accountId"/>
+        <result column="member_id" jdbcType="CHAR" property="memberId"/>
+        <result column="send_status" jdbcType="SMALLINT" property="sendStatus"/>
+        <result column="bonus_type_id" jdbcType="CHAR" property="bonusTypeId"/>
+        <result column="bonus_num" jdbcType="INTEGER" property="bonusNum"/>
+        <result column="type" jdbcType="SMALLINT" property="type"/>
+        <result column="date" jdbcType="VARCHAR" property="date"/>
+        <result column="description" jdbcType="VARCHAR" property="description"/>
+        <result column="create_account" jdbcType="CHAR" property="createAccount"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_account" jdbcType="CHAR" property="updateAccount"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+
+    <delete id="delete">
+        delete from hd_b2c_activity_threshold_record
+        <include refid="findCondition" />
+    </delete>
+
+    <update id="logicDelete">
+        update hd_b2c_activity_threshold_record
+        set deleted = 1
+        <include refid="findCondition" />
+    </update>
+
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.seatent.uranus.entity.b2c.B2cActivityThresholdRecord" useGeneratedKeys="true">
+        insert into hd_b2c_activity_threshold_record
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="siteId !=null">
+                site_id,
+            </if>
+            <if test="accountId !=null">
+                account_id,
+            </if>
+            <if test="memberId !=null">
+                member_id,
+            </if>
+            <if test="sendStatus !=null">
+                send_status,
+            </if>
+            <if test="bonusTypeId !=null">
+                bonus_type_id,
+            </if>
+            <if test="bonusNum !=null">
+                bonus_num,
+            </if>
+            <if test="type !=null">
+                type,
+            </if>
+            <if test="date !=null">
+                date,
+            </if>
+            <if test="description !=null">
+                description,
+            </if>
+            <if test="createAccount !=null">
+                create_account,
+            </if>
+            <if test="createTime !=null">
+                create_time,
+            </if>
+            <if test="updateAccount !=null">
+                update_account,
+            </if>
+            <if test="updateTime !=null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="siteId !=null">
+                #{siteId},
+            </if>
+            <if test="accountId !=null">
+                #{accountId},
+            </if>
+            <if test="memberId !=null">
+                #{memberId},
+            </if>
+            <if test="sendStatus !=null">
+                #{sendStatus},
+            </if>
+            <if test="bonusTypeId !=null">
+                #{bonusTypeId},
+            </if>
+            <if test="bonusNum !=null">
+                #{bonusNum},
+            </if>
+            <if test="type !=null">
+                #{type},
+            </if>
+            <if test="date !=null">
+                #{date},
+            </if>
+            <if test="description !=null">
+                #{description},
+            </if>
+            <if test="createAccount !=null">
+                #{createAccount},
+            </if>
+            <if test="createTime !=null">
+                #{createTime},
+            </if>
+            <if test="updateAccount !=null">
+                #{updateAccount},
+            </if>
+            <if test="updateTime !=null">
+                #{updateTime},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateById">
+        update hd_b2c_activity_threshold_record
+        <set>
+            <if test="record.siteId !=null">
+                site_id = #{record.siteId},
+            </if>
+            <if test="record.accountId !=null">
+                account_id = #{record.accountId},
+            </if>
+            <if test="record.memberId !=null">
+                member_id = #{record.memberId},
+            </if>
+            <if test="record.sendStatus !=null">
+                send_status = #{record.sendStatus},
+            </if>
+            <if test="record.bonusTypeId !=null">
+                bonus_type_id = #{record.bonusTypeId},
+            </if>
+            <if test="record.bonusNum !=null">
+                bonus_num = #{record.bonusNum},
+            </if>
+            <if test="record.type !=null">
+                type = #{record.type},
+            </if>
+            <if test="record.date !=null">
+                date = #{record.date},
+            </if>
+            <if test="record.description !=null">
+                description = #{record.description},
+            </if>
+            <if test="record.createAccount !=null">
+                create_account = #{record.createAccount},
+            </if>
+            <if test="record.createTime !=null">
+                create_time = #{record.createTime},
+            </if>
+            <if test="record.updateAccount !=null">
+                update_account = #{record.updateAccount},
+            </if>
+            <if test="record.updateTime !=null">
+                update_time = #{record.updateTime},
+            </if>
+        </set>
+        where id = #{record.id} and site_id = #{record.siteId}
+    </update>
+
+    <update id="updateByCondition">
+        update hd_b2c_activity_threshold_record
+        <set>
+            <if test="record.siteId !=null">
+                site_id = #{record.siteId},
+            </if>
+            <if test="record.accountId !=null">
+                account_id = #{record.accountId},
+            </if>
+            <if test="record.memberId !=null">
+                member_id = #{record.memberId},
+            </if>
+            <if test="record.sendStatus !=null">
+                send_status = #{record.sendStatus},
+            </if>
+            <if test="record.bonusTypeId !=null">
+                bonus_type_id = #{record.bonusTypeId},
+            </if>
+            <if test="record.bonusNum !=null">
+                bonus_num = #{record.bonusNum},
+            </if>
+            <if test="record.type !=null">
+                type = #{record.type},
+            </if>
+            <if test="record.date !=null">
+                date = #{record.date},
+            </if>
+            <if test="record.description !=null">
+                description = #{record.description},
+            </if>
+            <if test="record.createAccount !=null">
+                create_account = #{record.createAccount},
+            </if>
+            <if test="record.updateAccount !=null">
+                update_account = #{record.updateAccount},
+            </if>
+            <if test="record.updateTime !=null">
+                update_time = #{record.updateTime},
+            </if>
+        </set>
+        <where>
+            <if test="condition.siteId !=null">
+                and site_id = #{condition.siteId},
+            </if>
+            <if test="condition.accountId !=null">
+                and account_id = #{condition.accountId},
+            </if>
+            <if test="condition.memberId !=null">
+                and member_id = #{condition.memberId},
+            </if>
+            <if test="condition.sendStatus !=null">
+                and send_status = #{condition.sendStatus},
+            </if>
+            <if test="condition.bonusTypeId !=null">
+                and bonus_type_id = #{condition.bonusTypeId},
+            </if>
+            <if test="condition.bonusNum !=null">
+                and bonus_num = #{condition.bonusNum},
+            </if>
+            <if test="condition.type !=null">
+                and type = #{condition.type},
+            </if>
+            <if test="condition.date !=null">
+                and date = #{condition.date},
+            </if>
+            <if test="condition.description !=null">
+                and description = #{condition.description},
+            </if>
+            <if test="condition.createAccount !=null">
+                and create_account = #{condition.createAccount},
+            </if>
+            <if test="condition.updateAccount !=null">
+                and update_account = #{condition.updateAccount},
+            </if>
+            <if test="condition.updateTime !=null">
+                and update_time = #{condition.updateTime},
+            </if>
+
+        </where>
+    </update>
+
+    <select id="getById" resultMap="BaseResultMap">
+        <include refid="findColumn" />
+        where id = #{id} and site_id = #{siteId}
+    </select>
+
+    <select id="countByQuery" resultType="java.lang.Integer">
+        select count(1) from hd_b2c_activity_threshold_record
+        <include refid="findCondition" />
+    </select>
+
+    <select id="selectByQuery" resultMap="BaseResultMap">
+        <include refid="findColumn" />
+        <include refid="findCondition" />
+    </select>
+
+    <select id="selectByQueryWithPage" parameterType="map" resultMap="BaseResultMap">
+        <include refid="findColumn" />
+        <include refid="findConditionWithPage" />
+    </select>
+
+    <sql id="baseColumnList">
+        id, 
+        site_id, 
+        account_id, 
+        member_id, 
+        send_status, 
+        bonus_type_id, 
+        bonus_num, 
+        type, 
+        date, 
+        description, 
+        create_account, 
+        create_time, 
+        update_account, 
+        update_time
+    </sql>
+
+    <sql id="findColumn">
+        select
+        <include refid="baseColumnList" />
+        from hd_b2c_activity_threshold_record
+    </sql>
+
+    <sql id="findCondition">
+        <where>
+            <if test="query.id != null">
+                and id = #{query.id}
+            </if>
+            <if test="query.siteId != null">
+                and site_id = #{query.siteId}
+            </if>
+            <if test="query.accountId != null">
+                and account_id = #{query.accountId}
+            </if>
+            <if test="query.memberId != null">
+                and member_id = #{query.memberId}
+            </if>
+            <if test="query.sendStatus != null">
+                and send_status = #{query.sendStatus}
+            </if>
+            <if test="query.bonusTypeId != null">
+                and bonus_type_id = #{query.bonusTypeId}
+            </if>
+            <if test="query.bonusNum != null">
+                and bonus_num = #{query.bonusNum}
+            </if>
+            <if test="query.type != null">
+                and type = #{query.type}
+            </if>
+            <if test="query.date != null">
+                and date = #{query.date}
+            </if>
+            <if test="query.description != null">
+                and description = #{query.description}
+            </if>
+            <if test="query.createAccount != null">
+                and create_account = #{query.createAccount}
+            </if>
+            <if test="query.createTime != null">
+                and create_time = #{query.createTime}
+            </if>
+            <if test="query.updateAccount != null">
+                and update_account = #{query.updateAccount}
+            </if>
+            <if test="query.updateTime != null">
+                and update_time = #{query.updateTime}
+            </if>
+
+        </where>
+    </sql>
+
+    <sql id="findConditionWithPage">
+        <where>
+            <if test="param1.id != null">
+                and id = #{param1.id}
+            </if>
+            <if test="param1.siteId != null">
+                and site_id = #{param1.siteId}
+            </if>
+            <if test="param1.accountId != null">
+                and account_id = #{param1.accountId}
+            </if>
+            <if test="param1.memberId != null">
+                and member_id = #{param1.memberId}
+            </if>
+            <if test="param1.sendStatus != null">
+                and send_status = #{param1.sendStatus}
+            </if>
+            <if test="param1.bonusTypeId != null">
+                and bonus_type_id = #{param1.bonusTypeId}
+            </if>
+            <if test="param1.bonusNum != null">
+                and bonus_num = #{param1.bonusNum}
+            </if>
+            <if test="param1.type != null">
+                and type = #{param1.type}
+            </if>
+            <if test="param1.date != null">
+                and date = #{param1.date}
+            </if>
+            <if test="param1.description != null">
+                and description = #{param1.description}
+            </if>
+            <if test="param1.createAccount != null">
+                and create_account = #{param1.createAccount}
+            </if>
+            <if test="param1.createTime != null">
+                and create_time = #{param1.createTime}
+            </if>
+            <if test="param1.updateAccount != null">
+                and update_account = #{param1.updateAccount}
+            </if>
+            <if test="param1.updateTime != null">
+                and update_time = #{param1.updateTime}
+            </if>
+
+        </where>
+    </sql>
+
+</mapper>

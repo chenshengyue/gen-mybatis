@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seatent.mars.dao.CacheKeyDao">
+
+    <resultMap id="BaseResultMap" type="com.seatent.mars.entity.CacheKey">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="site_id" jdbcType="CHAR" property="siteId"/>
+        <result column="redis_key" jdbcType="VARCHAR" property="redisKey"/>
+        <result column="redis_key_name" jdbcType="VARCHAR" property="redisKeyName"/>
+        <result column="redis_field" jdbcType="VARCHAR" property="redisField"/>
+        <result column="redis_field_name" jdbcType="VARCHAR" property="redisFieldName"/>
+        <result column="cache_type" jdbcType="INTEGER" property="cacheType"/>
+        <result column="is_batch" jdbcType="INTEGER" property="isBatch"/>
+        <result column="is_reverse" jdbcType="INTEGER" property="isReverse"/>
+        <result column="biz_type_desc" jdbcType="VARCHAR" property="bizTypeDesc"/>
+        <result column="interfaceName" jdbcType="VARCHAR" property="interfaceName"/>
+        <result column="methodName" jdbcType="VARCHAR" property="methodName"/>
+        <result column="deleted" jdbcType="BIT" property="deleted"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+
+    <delete id="delete">
+        delete from hd_cache_key
+        <include refid="findCondition" />
+    </delete>
+
+    <update id="logicDelete">
+        update hd_cache_key
+        set deleted = 1
+        <include refid="findCondition" />
+    </update>
+
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.seatent.mars.entity.CacheKey" useGeneratedKeys="true">
+        insert into hd_cache_key
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="siteId !=null">
+                site_id,
+            </if>
+            <if test="redisKey !=null">
+                redis_key,
+            </if>
+            <if test="redisKeyName !=null">
+                redis_key_name,
+            </if>
+            <if test="redisField !=null">
+                redis_field,
+            </if>
+            <if test="redisFieldName !=null">
+                redis_field_name,
+            </if>
+            <if test="cacheType !=null">
+                cache_type,
+            </if>
+            <if test="isBatch !=null">
+                is_batch,
+            </if>
+            <if test="isReverse !=null">
+                is_reverse,
+            </if>
+            <if test="bizTypeDesc !=null">
+                biz_type_desc,
+            </if>
+            <if test="interfaceName !=null">
+                interfaceName,
+            </if>
+            <if test="methodName !=null">
+                methodName,
+            </if>
+            <if test="deleted !=null">
+                deleted,
+            </if>
+            <if test="createTime !=null">
+                create_time,
+            </if>
+            <if test="updateTime !=null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="siteId !=null">
+                #{siteId},
+            </if>
+            <if test="redisKey !=null">
+                #{redisKey},
+            </if>
+            <if test="redisKeyName !=null">
+                #{redisKeyName},
+            </if>
+            <if test="redisField !=null">
+                #{redisField},
+            </if>
+            <if test="redisFieldName !=null">
+                #{redisFieldName},
+            </if>
+            <if test="cacheType !=null">
+                #{cacheType},
+            </if>
+            <if test="isBatch !=null">
+                #{isBatch},
+            </if>
+            <if test="isReverse !=null">
+                #{isReverse},
+            </if>
+            <if test="bizTypeDesc !=null">
+                #{bizTypeDesc},
+            </if>
+            <if test="interfaceName !=null">
+                #{interfaceName},
+            </if>
+            <if test="methodName !=null">
+                #{methodName},
+            </if>
+            <if test="deleted !=null">
+                #{deleted},
+            </if>
+            <if test="createTime !=null">
+                #{createTime},
+            </if>
+            <if test="updateTime !=null">
+                #{updateTime},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateById">
+        update hd_cache_key
+        <set>
+            <if test="record.siteId !=null">
+                site_id = #{record.siteId},
+            </if>
+            <if test="record.redisKey !=null">
+                redis_key = #{record.redisKey},
+            </if>
+            <if test="record.redisKeyName !=null">
+                redis_key_name = #{record.redisKeyName},
+            </if>
+            <if test="record.redisField !=null">
+                redis_field = #{record.redisField},
+            </if>
+            <if test="record.redisFieldName !=null">
+                redis_field_name = #{record.redisFieldName},
+            </if>
+            <if test="record.cacheType !=null">
+                cache_type = #{record.cacheType},
+            </if>
+            <if test="record.isBatch !=null">
+                is_batch = #{record.isBatch},
+            </if>
+            <if test="record.isReverse !=null">
+                is_reverse = #{record.isReverse},
+            </if>
+            <if test="record.bizTypeDesc !=null">
+                biz_type_desc = #{record.bizTypeDesc},
+            </if>
+            <if test="record.interfaceName !=null">
+                interfaceName = #{record.interfaceName},
+            </if>
+            <if test="record.methodName !=null">
+                methodName = #{record.methodName},
+            </if>
+            <if test="record.deleted !=null">
+                deleted = #{record.deleted},
+            </if>
+            <if test="record.createTime !=null">
+                create_time = #{record.createTime},
+            </if>
+            <if test="record.updateTime !=null">
+                update_time = #{record.updateTime},
+            </if>
+        </set>
+        where id = #{record.id} and site_id = #{record.siteId}
+    </update>
+
+    <update id="updateByCondition">
+        update hd_cache_key
+        <set>
+            <if test="record.siteId !=null">
+                site_id = #{record.siteId},
+            </if>
+            <if test="record.redisKey !=null">
+                redis_key = #{record.redisKey},
+            </if>
+            <if test="record.redisKeyName !=null">
+                redis_key_name = #{record.redisKeyName},
+            </if>
+            <if test="record.redisField !=null">
+                redis_field = #{record.redisField},
+            </if>
+            <if test="record.redisFieldName !=null">
+                redis_field_name = #{record.redisFieldName},
+            </if>
+            <if test="record.cacheType !=null">
+                cache_type = #{record.cacheType},
+            </if>
+            <if test="record.isBatch !=null">
+                is_batch = #{record.isBatch},
+            </if>
+            <if test="record.isReverse !=null">
+                is_reverse = #{record.isReverse},
+            </if>
+            <if test="record.bizTypeDesc !=null">
+                biz_type_desc = #{record.bizTypeDesc},
+            </if>
+            <if test="record.interfaceName !=null">
+                interfaceName = #{record.interfaceName},
+            </if>
+            <if test="record.methodName !=null">
+                methodName = #{record.methodName},
+            </if>
+            <if test="record.deleted !=null">
+                deleted = #{record.deleted},
+            </if>
+            <if test="record.updateTime !=null">
+                update_time = #{record.updateTime},
+            </if>
+        </set>
+        <where>
+            <if test="condition.siteId !=null">
+                and site_id = #{condition.siteId},
+            </if>
+            <if test="condition.redisKey !=null">
+                and redis_key = #{condition.redisKey},
+            </if>
+            <if test="condition.redisKeyName !=null">
+                and redis_key_name = #{condition.redisKeyName},
+            </if>
+            <if test="condition.redisField !=null">
+                and redis_field = #{condition.redisField},
+            </if>
+            <if test="condition.redisFieldName !=null">
+                and redis_field_name = #{condition.redisFieldName},
+            </if>
+            <if test="condition.cacheType !=null">
+                and cache_type = #{condition.cacheType},
+            </if>
+            <if test="condition.isBatch !=null">
+                and is_batch = #{condition.isBatch},
+            </if>
+            <if test="condition.isReverse !=null">
+                and is_reverse = #{condition.isReverse},
+            </if>
+            <if test="condition.bizTypeDesc !=null">
+                and biz_type_desc = #{condition.bizTypeDesc},
+            </if>
+            <if test="condition.interfaceName !=null">
+                and interfaceName = #{condition.interfaceName},
+            </if>
+            <if test="condition.methodName !=null">
+                and methodName = #{condition.methodName},
+            </if>
+            <if test="condition.deleted !=null">
+                and deleted = #{condition.deleted},
+            </if>
+            <if test="condition.updateTime !=null">
+                and update_time = #{condition.updateTime},
+            </if>
+
+            <if test="condition.oldIsBatch != null">
+                and isBatch = #{condition.oldIsBatch}
+            </if>
+        </where>
+    </update>
+
+    <select id="getById" resultMap="BaseResultMap">
+        <include refid="findColumn" />
+        where id = #{id} and site_id = #{siteId}
+    </select>
+
+    <select id="countByQuery" resultType="java.lang.Integer">
+        select count(1) from hd_cache_key
+        <include refid="findCondition" />
+    </select>
+
+    <select id="selectByQuery" resultMap="BaseResultMap">
+        <include refid="findColumn" />
+        <include refid="findCondition" />
+    </select>
+
+    <select id="selectByQueryWithPage" parameterType="map" resultMap="BaseResultMap">
+        <include refid="findColumn" />
+        <include refid="findConditionWithPage" />
+    </select>
+
+    <sql id="baseColumnList">
+        id, 
+        site_id, 
+        redis_key, 
+        redis_key_name, 
+        redis_field, 
+        redis_field_name, 
+        cache_type, 
+        is_batch, 
+        is_reverse, 
+        biz_type_desc, 
+        interfaceName, 
+        methodName, 
+        deleted, 
+        create_time, 
+        update_time
+    </sql>
+
+    <sql id="findColumn">
+        select
+        <include refid="baseColumnList" />
+        from hd_cache_key
+    </sql>
+
+    <sql id="findCondition">
+        <where>
+            <if test="query.id != null">
+                and id = #{query.id}
+            </if>
+            <if test="query.siteId != null">
+                and site_id = #{query.siteId}
+            </if>
+            <if test="query.redisKey != null">
+                and redis_key = #{query.redisKey}
+            </if>
+            <if test="query.redisKeyName != null">
+                and redis_key_name = #{query.redisKeyName}
+            </if>
+            <if test="query.redisField != null">
+                and redis_field = #{query.redisField}
+            </if>
+            <if test="query.redisFieldName != null">
+                and redis_field_name = #{query.redisFieldName}
+            </if>
+            <if test="query.cacheType != null">
+                and cache_type = #{query.cacheType}
+            </if>
+            <if test="query.isBatch != null">
+                and is_batch = #{query.isBatch}
+            </if>
+            <if test="query.isReverse != null">
+                and is_reverse = #{query.isReverse}
+            </if>
+            <if test="query.bizTypeDesc != null">
+                and biz_type_desc = #{query.bizTypeDesc}
+            </if>
+            <if test="query.interfaceName != null">
+                and interfaceName = #{query.interfaceName}
+            </if>
+            <if test="query.methodName != null">
+                and methodName = #{query.methodName}
+            </if>
+            <if test="query.deleted != null">
+                and deleted = #{query.deleted}
+            </if>
+            <if test="query.createTime != null">
+                and create_time = #{query.createTime}
+            </if>
+            <if test="query.updateTime != null">
+                and update_time = #{query.updateTime}
+            </if>
+
+            <if test="query.ids != null">
+                and id in
+                <foreach item="item" collection="ids" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="query.siteIds != null">
+                and siteId in
+                <foreach item="item" collection="siteIds" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+    </sql>
+
+    <sql id="findConditionWithPage">
+        <where>
+            <if test="param1.id != null">
+                and id = #{param1.id}
+            </if>
+            <if test="param1.siteId != null">
+                and site_id = #{param1.siteId}
+            </if>
+            <if test="param1.redisKey != null">
+                and redis_key = #{param1.redisKey}
+            </if>
+            <if test="param1.redisKeyName != null">
+                and redis_key_name = #{param1.redisKeyName}
+            </if>
+            <if test="param1.redisField != null">
+                and redis_field = #{param1.redisField}
+            </if>
+            <if test="param1.redisFieldName != null">
+                and redis_field_name = #{param1.redisFieldName}
+            </if>
+            <if test="param1.cacheType != null">
+                and cache_type = #{param1.cacheType}
+            </if>
+            <if test="param1.isBatch != null">
+                and is_batch = #{param1.isBatch}
+            </if>
+            <if test="param1.isReverse != null">
+                and is_reverse = #{param1.isReverse}
+            </if>
+            <if test="param1.bizTypeDesc != null">
+                and biz_type_desc = #{param1.bizTypeDesc}
+            </if>
+            <if test="param1.interfaceName != null">
+                and interfaceName = #{param1.interfaceName}
+            </if>
+            <if test="param1.methodName != null">
+                and methodName = #{param1.methodName}
+            </if>
+            <if test="param1.deleted != null">
+                and deleted = #{param1.deleted}
+            </if>
+            <if test="param1.createTime != null">
+                and create_time = #{param1.createTime}
+            </if>
+            <if test="param1.updateTime != null">
+                and update_time = #{param1.updateTime}
+            </if>
+
+            <if test="param1.ids != null">
+                and id in
+                <foreach item="item" collection="ids" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="param1.siteIds != null">
+                and siteId in
+                <foreach item="item" collection="siteIds" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+    </sql>
+
+</mapper>
