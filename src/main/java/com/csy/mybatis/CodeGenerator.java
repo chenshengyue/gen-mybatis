@@ -69,7 +69,7 @@ public class CodeGenerator {
         config.setManagerImpl("biz.dubbo.manager.impl.b2c");
         config.setMapUnderscoreToCamelCase(true);
 
-        config.setTables("hd_b2c_bargain_info");
+        config.setTables("hd_b2c_official_lottery_info");
 
         generator.doGenerator(config);
     }

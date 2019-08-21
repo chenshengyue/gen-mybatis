@@ -117,6 +117,9 @@ public abstract class AbstractFileCreator implements FileCreator {
         if (ColumnAction.LESS_THAN_OR_EQUAL_TO.getAction().equals(condition.getAction())) {
             xmlSql = "and "+ condition.getColumnName() + " &lt;= #{" + type + condition.getPropertyName() + "}";
         }
+        if (ColumnAction.Like.getAction().equals(condition.getAction())) {
+            xmlSql = "and "+ condition.getColumnName() + " like concat('%',#{" + type + condition.getPropertyName() + "},'%')";
+        }
 
         condition.setXmlSql(xmlSql);
     }

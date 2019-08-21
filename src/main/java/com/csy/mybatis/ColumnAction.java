@@ -12,6 +12,7 @@ public enum ColumnAction {
     GREATER_THAN_OR_EQUAL_TO(">=", "GreaterThanOrEqualTo"),
     LESS_THAN("<", "LessThan"),
     LESS_THAN_OR_EQUAL_TO("<=", "LessThanOrEqualTo"),
+    Like("like", "Like"),
     ;
 
     private String action;
