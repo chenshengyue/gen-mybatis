@@ -54,6 +54,11 @@ public class CodeGenerator {
         CodeGenerator generator = new CodeGenerator();
         Config config = new Config();
         config.setDriverClassName("com.mysql.jdbc.Driver");
+        getNeptuneConfig(config);
+        generator.doGenerator(config);
+    }
+
+    private static void getActivityConfig(Config config){
         config.setUrl("jdbc:mysql://192.168.32.3:3306/haidai_activity?useUnicode=yes&amp;characterEncoding=utf-8&amp;allowMultiQueries=true");
         config.setUsername("activity");
         config.setPassword("16ef76854d3f4a85a68ed360287cbd5d");
@@ -68,10 +73,77 @@ public class CodeGenerator {
         config.setManager("biz.dubbo.manager.b2c");
         config.setManagerImpl("biz.dubbo.manager.impl.b2c");
         config.setMapUnderscoreToCamelCase(true);
+        config.setTables("hd_b2c_bargain_info");
+    }
 
-        config.setTables("hd_b2c_official_lottery_info");
+    private static void getGoodsConfig(Config config){
+        config.setUrl("jdbc:mysql://192.168.32.3:3306/haidai_goods?useUnicode=yes&amp;characterEncoding=utf-8&amp;allowMultiQueries=true");
+        config.setUsername("goods");
+        config.setPassword("9023b96cf57d4708b51bbb2fc6510268");
 
-        generator.doGenerator(config);
+        config.setBasePackage("com.seatent.jupiter");
+        config.setBean("entity");
+        config.setDao("dao");
+        config.setMapper("mapper");
+        config.setQuery("query");
+        config.setUpdate("update");
+        config.setManager("biz.manager");
+        config.setManagerImpl("biz.manager.impl");
+        config.setMapUnderscoreToCamelCase(true);
+        config.setTables("hd_goods_word_sharing");
+    }
+
+
+
+    private static void getStatisticsConfig(Config config){
+        config.setUrl("jdbc:mysql://192.168.32.3:3306/haidai_statistics?useUnicode=yes&amp;characterEncoding=utf-8&amp;allowMultiQueries=true");
+        config.setUsername("statistics");
+        config.setPassword("7ec8b95b25ba4167874ec7a6aa4e76b0");
+
+        config.setBasePackage("com.seatent.statistics");
+        config.setBean("entity");
+        config.setDao("dao");
+        config.setMapper("mapper");
+        config.setQuery("query");
+        config.setUpdate("update");
+        config.setManager("biz.manager");
+        config.setManagerImpl("biz.manager.impl");
+        config.setMapUnderscoreToCamelCase(true);
+        config.setTables("hd_statistics_day_b2c_bargain");
+    }
+
+    private static void getNeptuneConfig(Config config){
+        config.setUrl("jdbc:mysql://192.168.32.3:3306/haidai_member?useUnicode=yes&amp;characterEncoding=utf-8&amp;allowMultiQueries=true");
+        config.setUsername("member");
+        config.setPassword("6f808273744e4d5188488e1f0ad09ad9");
+
+        config.setBasePackage("com.seatent.neptune");
+        config.setBean("entity");
+        config.setDao("dao");
+        config.setMapper("mapper");
+        config.setQuery("query");
+        config.setUpdate("update");
+        config.setManager("biz.manager");
+        config.setManagerImpl("biz.manager.impl");
+        config.setMapUnderscoreToCamelCase(true);
+        config.setTables("hd_b2c_shop_menu_auth");
+    }
+
+    private static void getJupiterConfig(Config config){
+        config.setUrl("jdbc:mysql://192.168.32.3:3306/haidai_goods?useUnicode=yes&amp;characterEncoding=utf-8&amp;allowMultiQueries=true");
+        config.setUsername("goods");
+        config.setPassword("9023b96cf57d4708b51bbb2fc6510268");
+
+        config.setBasePackage("com.seatent.jupiter");
+        config.setBean("entity");
+        config.setDao("dao");
+        config.setMapper("mapper");
+        config.setQuery("query");
+        config.setUpdate("update");
+        config.setManager("biz.manager");
+        config.setManagerImpl("biz.manager.impl");
+        config.setMapUnderscoreToCamelCase(true);
+        config.setTables("hd_brand");
     }
 
 }
