@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seatent.uranus.dao.b2c.B2cPosterDao">
+
+    <resultMap id="BaseResultMap" type="com.seatent.uranus.entity.b2c.B2cPoster">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="site_id" jdbcType="CHAR" property="siteId"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="logo" jdbcType="VARCHAR" property="logo"/>
+        <result column="banner" jdbcType="VARCHAR" property="banner"/>
+        <result column="bg_color" jdbcType="CHAR" property="bgColor"/>
+        <result column="inline_bg_img" jdbcType="VARCHAR" property="inlineBgImg"/>
+        <result column="palace_bg_img" jdbcType="VARCHAR" property="palaceBgImg"/>
+        <result column="is_open" jdbcType="SMALLINT" property="isOpen"/>
+        <result column="is_hot" jdbcType="SMALLINT" property="isHot"/>
+        <result column="pageviews" jdbcType="INTEGER" property="pageviews"/>
+        <result column="usage" jdbcType="INTEGER" property="usage"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="sort" jdbcType="INTEGER" property="sort"/>
+        <result column="deleted" jdbcType="BIT" property="deleted"/>
+        <result column="create_account" jdbcType="CHAR" property="createAccount"/>
+        <result column="update_account" jdbcType="CHAR" property="updateAccount"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+
+    <delete id="delete">
+        delete from hd_b2c_poster
+        <include refid="findCondition" />
+    </delete>
+
+    <update id="logicDelete">
+        update hd_b2c_poster
+        set deleted = 1
+        <include refid="findCondition" />
+    </update>
+
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.seatent.uranus.entity.b2c.B2cPoster" useGeneratedKeys="true">
+        insert into hd_b2c_poster
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="siteId !=null">
+                site_id,
+            </if>
+            <if test="name !=null">
+                name,
+            </if>
+            <if test="logo !=null">
+                logo,
+            </if>
+            <if test="banner !=null">
+                banner,
+            </if>
+            <if test="bgColor !=null">
+                bg_color,
+            </if>
+            <if test="inlineBgImg !=null">
+                inline_bg_img,
+            </if>
+            <if test="palaceBgImg !=null">
+                palace_bg_img,
+            </if>
+            <if test="isOpen !=null">
+                is_open,
+            </if>
+            <if test="isHot !=null">
+                is_hot,
+            </if>
+            <if test="pageviews !=null">
+                pageviews,
+            </if>
+            <if test="usage !=null">
+                usage,
+            </if>
+            <if test="remark !=null">
+                remark,
+            </if>
+            <if test="sort !=null">
+                sort,
+            </if>
+            <if test="deleted !=null">
+                deleted,
+            </if>
+            <if test="createAccount !=null">
+                create_account,
+            </if>
+            <if test="updateAccount !=null">
+                update_account,
+            </if>
+            <if test="createTime !=null">
+                create_time,
+            </if>
+            <if test="updateTime !=null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="siteId !=null">
+                #{siteId},
+            </if>
+            <if test="name !=null">
+                #{name},
+            </if>
+            <if test="logo !=null">
+                #{logo},
+            </if>
+            <if test="banner !=null">
+                #{banner},
+            </if>
+            <if test="bgColor !=null">
+                #{bgColor},
+            </if>
+            <if test="inlineBgImg !=null">
+                #{inlineBgImg},
+            </if>
+            <if test="palaceBgImg !=null">
+                #{palaceBgImg},
+            </if>
+            <if test="isOpen !=null">
+                #{isOpen},
+            </if>
+            <if test="isHot !=null">
+                #{isHot},
+            </if>
+            <if test="pageviews !=null">
+                #{pageviews},
+            </if>
+            <if test="usage !=null">
+                #{usage},
+            </if>
+            <if test="remark !=null">
+                #{remark},
+            </if>
+            <if test="sort !=null">
+                #{sort},
+            </if>
+            <if test="deleted !=null">
+                #{deleted},
+            </if>
+            <if test="createAccount !=null">
+                #{createAccount},
+            </if>
+            <if test="updateAccount !=null">
+                #{updateAccount},
+            </if>
+            <if test="createTime !=null">
+                #{createTime},
+            </if>
+            <if test="updateTime !=null">
+                #{updateTime},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateById">
+        update hd_b2c_poster
+        <set>
+            <if test="record.siteId !=null">
+                site_id = #{record.siteId},
+            </if>
+            <if test="record.name !=null">
+                name = #{record.name},
+            </if>
+            <if test="record.logo !=null">
+                logo = #{record.logo},
+            </if>
+            <if test="record.banner !=null">
+                banner = #{record.banner},
+            </if>
+            <if test="record.bgColor !=null">
+                bg_color = #{record.bgColor},
+            </if>
+            <if test="record.inlineBgImg !=null">
+                inline_bg_img = #{record.inlineBgImg},
+            </if>
+            <if test="record.palaceBgImg !=null">
+                palace_bg_img = #{record.palaceBgImg},
+            </if>
+            <if test="record.isOpen !=null">
+                is_open = #{record.isOpen},
+            </if>
+            <if test="record.isHot !=null">
+                is_hot = #{record.isHot},
+            </if>
+            <if test="record.pageviews !=null">
+                pageviews = #{record.pageviews},
+            </if>
+            <if test="record.usage !=null">
+                usage = #{record.usage},
+            </if>
+            <if test="record.remark !=null">
+                remark = #{record.remark},
+            </if>
+            <if test="record.sort !=null">
+                sort = #{record.sort},
+            </if>
+            <if test="record.deleted !=null">
+                deleted = #{record.deleted},
+            </if>
+            <if test="record.createAccount !=null">
+                create_account = #{record.createAccount},
+            </if>
+            <if test="record.updateAccount !=null">
+                update_account = #{record.updateAccount},
+            </if>
+            <if test="record.createTime !=null">
+                create_time = #{record.createTime},
+            </if>
+            <if test="record.updateTime !=null">
+                update_time = #{record.updateTime},
+            </if>
+        </set>
+        where id = #{record.id} and site_id = #{record.siteId}
+    </update>
+
+    <update id="updateByCondition">
+        update hd_b2c_poster
+        <set>
+            <if test="record.siteId !=null">
+                site_id = #{record.siteId},
+            </if>
+            <if test="record.name !=null">
+                name = #{record.name},
+            </if>
+            <if test="record.logo !=null">
+                logo = #{record.logo},
+            </if>
+            <if test="record.banner !=null">
+                banner = #{record.banner},
+            </if>
+            <if test="record.bgColor !=null">
+                bg_color = #{record.bgColor},
+            </if>
+            <if test="record.inlineBgImg !=null">
+                inline_bg_img = #{record.inlineBgImg},
+            </if>
+            <if test="record.palaceBgImg !=null">
+                palace_bg_img = #{record.palaceBgImg},
+            </if>
+            <if test="record.isOpen !=null">
+                is_open = #{record.isOpen},
+            </if>
+            <if test="record.isHot !=null">
+                is_hot = #{record.isHot},
+            </if>
+            <if test="record.pageviews !=null">
+                pageviews = #{record.pageviews},
+            </if>
+            <if test="record.usage !=null">
+                usage = #{record.usage},
+            </if>
+            <if test="record.remark !=null">
+                remark = #{record.remark},
+            </if>
+            <if test="record.sort !=null">
+                sort = #{record.sort},
+            </if>
+            <if test="record.deleted !=null">
+                deleted = #{record.deleted},
+            </if>
+            <if test="record.createAccount !=null">
+                create_account = #{record.createAccount},
+            </if>
+            <if test="record.updateAccount !=null">
+                update_account = #{record.updateAccount},
+            </if>
+            <if test="record.updateTime !=null">
+                update_time = #{record.updateTime},
+            </if>
+        </set>
+        <where>
+            <if test="condition.id !=null">
+                and id = #{condition.id}
+            </if>
+            <if test="condition.siteId !=null">
+                and site_id = #{condition.siteId}
+            </if>
+            <if test="condition.name !=null">
+                and name = #{condition.name}
+            </if>
+            <if test="condition.logo !=null">
+                and logo = #{condition.logo}
+            </if>
+            <if test="condition.banner !=null">
+                and banner = #{condition.banner}
+            </if>
+            <if test="condition.bgColor !=null">
+                and bg_color = #{condition.bgColor}
+            </if>
+            <if test="condition.inlineBgImg !=null">
+                and inline_bg_img = #{condition.inlineBgImg}
+            </if>
+            <if test="condition.palaceBgImg !=null">
+                and palace_bg_img = #{condition.palaceBgImg}
+            </if>
+            <if test="condition.isOpen !=null">
+                and is_open = #{condition.isOpen}
+            </if>
+            <if test="condition.isHot !=null">
+                and is_hot = #{condition.isHot}
+            </if>
+            <if test="condition.pageviews !=null">
+                and pageviews = #{condition.pageviews}
+            </if>
+            <if test="condition.usage !=null">
+                and usage = #{condition.usage}
+            </if>
+            <if test="condition.remark !=null">
+                and remark = #{condition.remark}
+            </if>
+            <if test="condition.sort !=null">
+                and sort = #{condition.sort}
+            </if>
+            <if test="condition.deleted !=null">
+                and deleted = #{condition.deleted}
+            </if>
+            <if test="condition.createAccount !=null">
+                and create_account = #{condition.createAccount}
+            </if>
+            <if test="condition.updateAccount !=null">
+                and update_account = #{condition.updateAccount}
+            </if>
+            <if test="condition.updateTime !=null">
+                and update_time = #{condition.updateTime}
+            </if>
+
+        </where>
+    </update>
+
+    <select id="getById" resultMap="BaseResultMap">
+        <include refid="findColumn" />
+        where id = #{id} and site_id = #{siteId}
+    </select>
+
+    <select id="countByQuery" resultType="java.lang.Integer">
+        select count(1) from hd_b2c_poster
+        <include refid="findCondition" />
+    </select>
+
+    <select id="selectByQuery" resultMap="BaseResultMap">
+        <include refid="findColumn" />
+        <include refid="findCondition" />
+    </select>
+
+    <select id="selectByQueryWithPage" parameterType="map" resultMap="BaseResultMap">
+        <include refid="findColumn" />
+        <include refid="findConditionWithPage" />
+    </select>
+
+    <sql id="baseColumnList">
+        id, 
+        site_id, 
+        name, 
+        logo, 
+        banner, 
+        bg_color, 
+        inline_bg_img, 
+        palace_bg_img, 
+        is_open, 
+        is_hot, 
+        pageviews, 
+        usage, 
+        remark, 
+        sort, 
+        deleted, 
+        create_account, 
+        update_account, 
+        create_time, 
+        update_time
+    </sql>
+
+    <sql id="findColumn">
+        select
+        <include refid="baseColumnList" />
+        from hd_b2c_poster
+    </sql>
+
+    <sql id="findCondition">
+        <where>
+            <if test="query.id != null">
+                and id = #{query.id}
+            </if>
+            <if test="query.siteId != null">
+                and site_id = #{query.siteId}
+            </if>
+            <if test="query.name != null">
+                and name = #{query.name}
+            </if>
+            <if test="query.logo != null">
+                and logo = #{query.logo}
+            </if>
+            <if test="query.banner != null">
+                and banner = #{query.banner}
+            </if>
+            <if test="query.bgColor != null">
+                and bg_color = #{query.bgColor}
+            </if>
+            <if test="query.inlineBgImg != null">
+                and inline_bg_img = #{query.inlineBgImg}
+            </if>
+            <if test="query.palaceBgImg != null">
+                and palace_bg_img = #{query.palaceBgImg}
+            </if>
+            <if test="query.isOpen != null">
+                and is_open = #{query.isOpen}
+            </if>
+            <if test="query.isHot != null">
+                and is_hot = #{query.isHot}
+            </if>
+            <if test="query.pageviews != null">
+                and pageviews = #{query.pageviews}
+            </if>
+            <if test="query.usage != null">
+                and usage = #{query.usage}
+            </if>
+            <if test="query.remark != null">
+                and remark = #{query.remark}
+            </if>
+            <if test="query.sort != null">
+                and sort = #{query.sort}
+            </if>
+            <if test="query.deleted != null">
+                and deleted = #{query.deleted}
+            </if>
+            <if test="query.createAccount != null">
+                and create_account = #{query.createAccount}
+            </if>
+            <if test="query.updateAccount != null">
+                and update_account = #{query.updateAccount}
+            </if>
+            <if test="query.createTime != null">
+                and create_time = #{query.createTime}
+            </if>
+            <if test="query.updateTime != null">
+                and update_time = #{query.updateTime}
+            </if>
+
+        </where>
+    </sql>
+
+    <sql id="findConditionWithPage">
+        <where>
+            <if test="param1.id != null">
+                and id = #{param1.id}
+            </if>
+            <if test="param1.siteId != null">
+                and site_id = #{param1.siteId}
+            </if>
+            <if test="param1.name != null">
+                and name = #{param1.name}
+            </if>
+            <if test="param1.logo != null">
+                and logo = #{param1.logo}
+            </if>
+            <if test="param1.banner != null">
+                and banner = #{param1.banner}
+            </if>
+            <if test="param1.bgColor != null">
+                and bg_color = #{param1.bgColor}
+            </if>
+            <if test="param1.inlineBgImg != null">
+                and inline_bg_img = #{param1.inlineBgImg}
+            </if>
+            <if test="param1.palaceBgImg != null">
+                and palace_bg_img = #{param1.palaceBgImg}
+            </if>
+            <if test="param1.isOpen != null">
+                and is_open = #{param1.isOpen}
+            </if>
+            <if test="param1.isHot != null">
+                and is_hot = #{param1.isHot}
+            </if>
+            <if test="param1.pageviews != null">
+                and pageviews = #{param1.pageviews}
+            </if>
+            <if test="param1.usage != null">
+                and usage = #{param1.usage}
+            </if>
+            <if test="param1.remark != null">
+                and remark = #{param1.remark}
+            </if>
+            <if test="param1.sort != null">
+                and sort = #{param1.sort}
+            </if>
+            <if test="param1.deleted != null">
+                and deleted = #{param1.deleted}
+            </if>
+            <if test="param1.createAccount != null">
+                and create_account = #{param1.createAccount}
+            </if>
+            <if test="param1.updateAccount != null">
+                and update_account = #{param1.updateAccount}
+            </if>
+            <if test="param1.createTime != null">
+                and create_time = #{param1.createTime}
+            </if>
+            <if test="param1.updateTime != null">
+                and update_time = #{param1.updateTime}
+            </if>
+
+        </where>
+    </sql>
+
+</mapper>
