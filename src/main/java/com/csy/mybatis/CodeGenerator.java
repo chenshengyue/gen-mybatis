@@ -53,8 +53,17 @@ public class CodeGenerator {
 
         CodeGenerator generator = new CodeGenerator();
         Config config = new Config();
+        config.setBean("entity");
+        config.setDao("dao");
+        config.setMapper("mapper");
+        config.setQuery("query");
+        config.setUpdate("update");
+        config.setManager("biz.manager");
+        config.setManagerImpl("biz.manager.impl");
+        config.setMapUnderscoreToCamelCase(true);
+
         config.setDriverClassName("com.mysql.jdbc.Driver");
-        getNeptuneConfig(config);
+        getActivityConfig(config);
         generator.doGenerator(config);
     }
 
@@ -65,15 +74,10 @@ public class CodeGenerator {
 
         config.setBasePackage("com.seatent.uranus");
         config.setBean("entity.b2c");
-//        config.setDomain("domain");
         config.setDao("dao.b2c");
-        config.setMapper("mapper");
-        config.setQuery("query");
-        config.setUpdate("update");
         config.setManager("biz.dubbo.manager.b2c");
         config.setManagerImpl("biz.dubbo.manager.impl.b2c");
-        config.setMapUnderscoreToCamelCase(true);
-        config.setTables("hd_b2c_bargain_info");
+        config.setTables("hd_b2c_poster");
     }
 
     private static void getGoodsConfig(Config config){
@@ -82,14 +86,7 @@ public class CodeGenerator {
         config.setPassword("9023b96cf57d4708b51bbb2fc6510268");
 
         config.setBasePackage("com.seatent.jupiter");
-        config.setBean("entity");
-        config.setDao("dao");
-        config.setMapper("mapper");
-        config.setQuery("query");
-        config.setUpdate("update");
-        config.setManager("biz.manager");
-        config.setManagerImpl("biz.manager.impl");
-        config.setMapUnderscoreToCamelCase(true);
+
         config.setTables("hd_goods_word_sharing");
     }
 
@@ -101,14 +98,7 @@ public class CodeGenerator {
         config.setPassword("7ec8b95b25ba4167874ec7a6aa4e76b0");
 
         config.setBasePackage("com.seatent.statistics");
-        config.setBean("entity");
-        config.setDao("dao");
-        config.setMapper("mapper");
-        config.setQuery("query");
-        config.setUpdate("update");
-        config.setManager("biz.manager");
-        config.setManagerImpl("biz.manager.impl");
-        config.setMapUnderscoreToCamelCase(true);
+
         config.setTables("hd_statistics_day_b2c_bargain");
     }
 
@@ -118,14 +108,7 @@ public class CodeGenerator {
         config.setPassword("6f808273744e4d5188488e1f0ad09ad9");
 
         config.setBasePackage("com.seatent.neptune");
-        config.setBean("entity");
-        config.setDao("dao");
-        config.setMapper("mapper");
-        config.setQuery("query");
-        config.setUpdate("update");
-        config.setManager("biz.manager");
-        config.setManagerImpl("biz.manager.impl");
-        config.setMapUnderscoreToCamelCase(true);
+
         config.setTables("hd_b2c_shop_menu_auth");
     }
 
@@ -135,14 +118,7 @@ public class CodeGenerator {
         config.setPassword("9023b96cf57d4708b51bbb2fc6510268");
 
         config.setBasePackage("com.seatent.jupiter");
-        config.setBean("entity");
-        config.setDao("dao");
-        config.setMapper("mapper");
-        config.setQuery("query");
-        config.setUpdate("update");
-        config.setManager("biz.manager");
-        config.setManagerImpl("biz.manager.impl");
-        config.setMapUnderscoreToCamelCase(true);
+
         config.setTables("hd_brand");
     }
 
