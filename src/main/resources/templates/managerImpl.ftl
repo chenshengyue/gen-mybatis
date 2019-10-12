@@ -96,8 +96,8 @@ public class ${table.beanName}ManagerImpl implements ${table.beanName}Manager {
         if (StringUtils.isBlank(query.getSiteId())) {
             throw new BizException("系统异常");
         }
-        if (query.delete() == null) {
-            query.setDelete(false);
+        if (query.getDeleted() == null) {
+            query.setDeleted(false);
         }
         return ${table.refBeanName}Dao.countByQuery(query);
     }
@@ -107,8 +107,8 @@ public class ${table.beanName}ManagerImpl implements ${table.beanName}Manager {
         if (StringUtils.isBlank(query.getSiteId())) {
             throw new BizException("系统异常");
         }
-        if (query.delete() == null) {
-            query.setDelete(false);
+        if (query.getDeleted() == null) {
+            query.setDeleted(false);
         }
         return ${table.refBeanName}Dao.selectByQuery(query);
     }
@@ -127,8 +127,8 @@ public class ${table.beanName}ManagerImpl implements ${table.beanName}Manager {
         if (StringUtils.isBlank(query.getSiteId())) {
             throw new BizException("系统异常");
         }
-        if (query.delete() == null) {
-            query.setDelete(false);
+        if (query.getDeleted() == null) {
+            query.setDeleted(false);
         }
         return ${table.refBeanName}Dao.selectByQueryWithPage(query, page);
     }

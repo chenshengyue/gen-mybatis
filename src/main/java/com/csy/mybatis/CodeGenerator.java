@@ -63,8 +63,24 @@ public class CodeGenerator {
         config.setMapUnderscoreToCamelCase(true);
 
         config.setDriverClassName("com.mysql.jdbc.Driver");
-        getActivityConfig(config);
+        getOsirisOrderConfig(config);
         generator.doGenerator(config);
+    }
+
+    private static void getOsirisOrderConfig(Config config){
+        config.setUrl("jdbc:mysql://192.168.32.3:3306/haidai_pos?useUnicode=yes&amp;characterEncoding=utf-8&amp;allowMultiQueries=true");
+        config.setUsername("osiris");
+        config.setPassword("e18e63uialaidai$cahaidai");
+
+        config.setBasePackage("com.seatent.osiris");
+        config.setBean("dal.order.entity");
+        config.setDao("dal.order.dao");
+        config.setManager("biz.order.manager");
+        config.setManagerImpl("biz.order.manager.impl");
+        config.setQuery("dal.order.query");
+        config.setUpdate("dal.order.update");
+
+        config.setTables("hd_order");
     }
 
     private static void getActivityConfig(Config config){
