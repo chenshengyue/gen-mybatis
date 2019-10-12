@@ -109,7 +109,7 @@
 
     <select id="getById" resultMap="BaseResultMap">
         <include refid="findColumn" />
-        where id = ${r"#{id}"} and site_id = ${r"#{siteId}"}
+        where id = ${r"#{id}"} and site_id = ${r"#{siteId}"} and deleted = 0
     </select>
 
     <select id="countByQuery" resultType="java.lang.Integer">

@@ -96,6 +96,9 @@ public class ${table.beanName}ManagerImpl implements ${table.beanName}Manager {
         if (StringUtils.isBlank(query.getSiteId())) {
             throw new BizException("系统异常");
         }
+        if (query.delete() == null) {
+            query.setDelete(false);
+        }
         return ${table.refBeanName}Dao.countByQuery(query);
     }
 
@@ -123,6 +126,9 @@ public class ${table.beanName}ManagerImpl implements ${table.beanName}Manager {
     public List<${table.beanName}> selectByQueryWithPage(${table.beanName}Query query, Pagination page) {
         if (StringUtils.isBlank(query.getSiteId())) {
             throw new BizException("系统异常");
+        }
+        if (query.delete() == null) {
+            query.setDelete(false);
         }
         return ${table.refBeanName}Dao.selectByQueryWithPage(query, page);
     }
