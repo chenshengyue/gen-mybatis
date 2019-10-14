@@ -8,6 +8,8 @@ import java.util.List;
 
 public interface ${table.beanName}Manager {
 
+    void logicDelete(${table.beanName} record);
+
     void insert(${table.beanName} record);
 
     int updateById(${table.beanName} record);

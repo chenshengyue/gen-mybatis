@@ -23,6 +23,14 @@ public class ${table.beanName}ManagerImpl implements ${table.beanName}Manager {
     private ${table.beanName}Dao ${table.refBeanName}Dao;
 
     @Override
+    public void logicDelete(${table.beanName} record) {
+        Date now = new Date();
+        record.setDeleted(false);
+        record.setUpdateTime(now);
+        ${table.refBeanName}Dao.logicDelete(record);
+    }
+
+    @Override
     public void insert(${table.beanName} record) {
         Date now = new Date();
         record.setDeleted(false);

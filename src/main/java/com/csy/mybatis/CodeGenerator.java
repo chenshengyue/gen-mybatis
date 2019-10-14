@@ -93,7 +93,7 @@ public class CodeGenerator {
         config.setDao("dao.b2c");
         config.setManager("biz.dubbo.manager.b2c");
         config.setManagerImpl("biz.dubbo.manager.impl.b2c");
-        config.setTables("hd_b2c_poster");
+        config.setTables("hd_b2c_member_poster_goods_ref");
     }
 
     private static void getGoodsConfig(Config config){
