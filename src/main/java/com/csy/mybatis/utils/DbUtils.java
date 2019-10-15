@@ -214,7 +214,7 @@ public class DbUtils {
 
     private static String removePrefix(String tableName){
         String str = org.apache.commons.lang3.StringUtils.EMPTY;
-        if(tableName.startsWith("hd_")){
+        if(tableName.startsWith("hd_pos")){
             str = tableName.substring(3,tableName.length());
         }
         return str;
