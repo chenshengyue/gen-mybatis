@@ -25,8 +25,8 @@ public class ${table.beanName}ManagerImpl implements ${table.beanName}Manager {
     @Override
     public void logicDelete(${table.beanName}Query query) {
         Date now = new Date();
-        record.setDeleted(false);
-        record.setUpdateTime(now);
+        query.setDeleted(false);
+        query.setUpdateTime(now);
         ${table.refBeanName}Dao.logicDelete(query);
     }
 

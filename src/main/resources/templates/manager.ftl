@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ${table.beanName}Manager {
 
-    void logicDelete(${table.beanName} record);
+    void logicDelete(${table.beanName}Query query);
 
     void insert(${table.beanName} record);
 
