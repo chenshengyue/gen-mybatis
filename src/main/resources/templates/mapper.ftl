@@ -43,7 +43,12 @@
         <include refid="findCondition" />
     </update>
 
+    <#if primaryKey["${primaryKeys[0]}"].columnType == "BIGINT">
     <insert id="insert" keyColumn="${primaryKey["${primaryKeys[0]}"].columnName}" keyProperty="${primaryKeys[0]}" parameterType="${bean}" useGeneratedKeys="true">
+    </#if>
+    <#if primaryKey["${primaryKeys[0]}"].columnType != "BIGINT">
+    <insert id="insert" parameterType="${bean}">
+    </#if>
         insert into ${tableName}
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <#list propertiesToColumnsKeys as key>

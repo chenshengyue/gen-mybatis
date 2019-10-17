@@ -80,7 +80,7 @@ public class CodeGenerator {
         config.setQuery("dal.order.query");
         config.setUpdate("dal.order.update");
 
-        config.setTables("hd_pos_order_item");
+        config.setTables("hd_pos_order");
     }
 
     private static void getActivityConfig(Config config){
