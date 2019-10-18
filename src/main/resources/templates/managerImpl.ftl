@@ -80,7 +80,7 @@ public class ${table.beanName}ManagerImpl implements ${table.beanName}Manager {
     }
 
     @Override
-    public ${table.beanName} getById(String siteId, Long id) {
+    public ${table.beanName} getById(String siteId, ${table.primaryKeyType} id) {
         if (StringUtils.isBlank(siteId)) {
             throw new BizException("系统异常");
         }
@@ -88,7 +88,7 @@ public class ${table.beanName}ManagerImpl implements ${table.beanName}Manager {
     }
 
     @Override
-    public ${table.beanName} getByIdThrowExceptionIfNull(String siteId, Long id) {
+    public ${table.beanName} getByIdThrowExceptionIfNull(String siteId, ${table.primaryKeyType} id) {
         if (StringUtils.isBlank(siteId)) {
             throw new BizException("系统异常");
         }

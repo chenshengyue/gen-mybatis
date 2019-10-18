@@ -40,6 +40,12 @@ public class TableInfo implements Cloneable {
 
     private TreeSet<String> packages;
 
+    // 主键是否是自增列
+    private boolean pkAutoIncrement;
+
+    //主键类型
+    private String primaryKeyType;
+
     @Override
     public TableInfo clone() {
         TableInfo tableInfo = null;

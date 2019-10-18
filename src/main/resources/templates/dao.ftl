@@ -22,7 +22,7 @@ public interface ${table.beanName}Dao {
     int updateByCondition(@Param("record") ${table.beanName} record, @Param("condition") ${table.beanName}Update condition);
 
 
-    ${table.beanName} getById(@Param("siteId") String siteId, @Param("id") Long id);
+    ${table.beanName} getById(@Param("siteId") String siteId, @Param("id") ${table.primaryKeyType} id);
 
     int countByQuery(@Param("query") ${table.beanName}Query query);
 

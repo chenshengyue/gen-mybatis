@@ -2,6 +2,7 @@ package com.csy.mybatis.utils;
 
 import com.csy.mybatis.bean.BeanInfo;
 import com.csy.mybatis.bean.ColumnInfo;
+import com.csy.mybatis.bean.PrimaryKeyInfo;
 import com.csy.mybatis.bean.TableInfo;
 import lombok.extern.slf4j.Slf4j;
 
@@ -47,11 +48,15 @@ public class DbUtils {
         if (primaryKeyColumnName == null) {
             primaryKeyColumnName = "id";
         }
+
         return primaryKeyColumnName;
     }
 
-    public List<TableInfo> getAllTables(DatabaseMetaData metaData, List<String> tableNames, boolean mapUnderscoreToCamelCase, Map<String, String> columnOverrides)
+    public List<TableInfo> getAllTables(Connection connection, DatabaseMetaData metaData,
+        List<String> tableNames, boolean mapUnderscoreToCamelCase,
+        Map<String, String> columnOverrides)
             throws SQLException {
+
         List<TableInfo> tables = new ArrayList<TableInfo>();
         ResultSet tableRet = getTableResultSet(metaData);
         while (tableRet.next()) {
@@ -67,7 +72,14 @@ public class DbUtils {
                     LinkedHashMap<String, String> properties = (LinkedHashMap<String, String>) columnsWarp.get("properties");
                     LinkedHashMap<String, BeanInfo> beanInfos = (LinkedHashMap<String, BeanInfo>) columnsWarp.get("beanInfos");
                     LinkedHashMap<String, String> propertiesToColumns = (LinkedHashMap<String, String>) columnsWarp.get("propertiesToColumns");
+
                     String primaryKey = primaryKeyColumnName(metaData, dbTableName);
+
+                    PrimaryKeyInfo primaryKeyInfo = pkAutoIncrement(connection, dbTableName, primaryKey);
+                    boolean pkAutoIncrement = primaryKeyInfo.isPkAutoIncrement();
+                    String primaryKeyType = primaryKeyInfo.getPrimaryKeyType();
+
+
                     String primaryKeyProperty = primaryKey;
                     if (columnOverrides.get("column") != null && columnOverrides.get("column").contains(primaryKey)) {
                         List overridesColumn = Arrays.asList(columnOverrides.get("column").split(","));
@@ -98,12 +110,48 @@ public class DbUtils {
                     tableInfo.setPrimaryKey(primaryKeyMap);
                     tableInfo.setPackages(packages);
                     tableInfo.setPropertiesToColumns(propertiesToColumns);
+                    tableInfo.setPkAutoIncrement(pkAutoIncrement);
+                    tableInfo.setPrimaryKeyType(primaryKeyType);
                     tables.add(tableInfo);
                 }
             }
         }
         return tables;
     }
+
+    private PrimaryKeyInfo pkAutoIncrement(Connection conn, String dbTableName,
+        String primaryKey) throws SQLException {
+
+        PrimaryKeyInfo primaryKeyInfo = new PrimaryKeyInfo();
+        boolean pkAutoIncrement = false;
+        String primaryKeyType = "long";
+
+        String sql = "SELECT * FROM " + dbTableName + " LIMIT 1";
+
+        Statement statement = conn.createStatement();
+        ResultSet rs = statement.executeQuery(sql);
+        ResultSetMetaData metaData = rs.getMetaData();
+
+        int columnCount = metaData.getColumnCount();
+        if (columnCount <= 0) {
+            System.out.printf("WARNING: Table %s has no column.\n", dbTableName);
+            primaryKeyInfo.setPkAutoIncrement(pkAutoIncrement);
+            primaryKeyInfo.setPrimaryKeyType(primaryKeyType);
+            return primaryKeyInfo;
+        }
+        for (int i = 1; i <= columnCount; i++) {
+            String columnName = metaData.getColumnName(i).toLowerCase();
+
+            if(columnName.equals(primaryKey)){
+                pkAutoIncrement = metaData.isAutoIncrement(i);
+                primaryKeyType = getFieldType(metaData.getColumnTypeName(i), new HashSet<>());
+                break;
+            }
+        }
+
+        primaryKeyInfo.setPkAutoIncrement(pkAutoIncrement);
+        primaryKeyInfo.setPrimaryKeyType(primaryKeyType);
+        return primaryKeyInfo;    }
 
     private LinkedHashMap<String, Object> columnsWarp(List<ColumnInfo> columns, Set<String> packages, boolean mapUnderscoreToCamelCase, Map<String, String> columnOverrides) {
         LinkedHashMap<String, String> properties = new LinkedHashMap<String, String>();

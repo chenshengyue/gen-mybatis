@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <#assign beanName = table.beanName/>
 <#assign tableName = table.tableName/>
+<#assign pkAutoIncrement = table.pkAutoIncrement/>
 <#macro mapperEl value>${r"#{"}${value}}</#macro>
 <#macro mapperPrimaryKey value>${r"#{"}${value.propertyName}}</#macro>
 <#macro mapperPrimaryKeyWithRecord value>${r"#{record."}${value.propertyName}}</#macro>
@@ -52,19 +53,27 @@
         insert into ${tableName}
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <#list propertiesToColumnsKeys as key>
-                <#if key !="${primaryKeys[0]}">
-            <if test="${key} !=null">
-                ${propertiesToColumns["${key}"]},
-            </if>
+                <#if key =="${primaryKeys[0]}" && pkAutoIncrement == false>
+                    <if test="${key} !=null">
+                        ${propertiesToColumns["${key}"]},
+                    </if>
+                <#elseif key !="${primaryKeys[0]}">
+                    <if test="${key} !=null">
+                        ${propertiesToColumns["${key}"]},
+                    </if>
                 </#if>
             </#list>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <#list beanInfos as beanInfo>
-                <#if beanInfo.propertyName !="${primaryKeys[0]}">
-            <if test="${beanInfo.propertyName} !=null">
-                <@mapperBeanInfo beanInfo/>,
-            </if>
+                <#if beanInfo.propertyName =="${primaryKeys[0]}" && pkAutoIncrement == false>
+                    <if test="${beanInfo.propertyName} !=null">
+                        <@mapperBeanInfo beanInfo/>,
+                    </if>
+                <#elseif beanInfo.propertyName !="${primaryKeys[0]}">
+                    <if test="${beanInfo.propertyName} !=null">
+                        <@mapperBeanInfo beanInfo/>,
+                    </if>
                 </#if>
             </#list>
         </trim>

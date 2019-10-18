@@ -20,9 +20,9 @@ public interface ${table.beanName}Manager {
 
     void updateThrowException(${table.beanName} record, ${table.beanName}Update condition);
 
-    ${table.beanName} getById(String siteId, Long id);
+    ${table.beanName} getById(String siteId, ${table.primaryKeyType} id);
 
-    ${table.beanName} getByIdThrowExceptionIfNull(String siteId, Long id);
+    ${table.beanName} getByIdThrowExceptionIfNull(String siteId, ${table.primaryKeyType} id);
 
     int countByQuery(${table.beanName}Query query);
 
