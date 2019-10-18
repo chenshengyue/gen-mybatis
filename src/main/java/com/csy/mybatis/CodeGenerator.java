@@ -29,7 +29,7 @@ public class CodeGenerator {
         Connection connection = DbUtils.getInstance().getConnection(config.getDriverClassName(), config.getUrl(), config.getUsername(), config.getPassword());
         DatabaseMetaData metaData = DbUtils.getInstance().getMetaData(connection);
         List<String> tableNames = Arrays.asList(config.getTables().split(","));
-        List<TableInfo> result = DbUtils.getInstance().getAllTables(metaData, tableNames, mapUnderscoreToCamelCase, config.getColumnOverrides());
+        List<TableInfo> result = DbUtils.getInstance().getAllTables(connection, metaData, tableNames, mapUnderscoreToCamelCase, config.getColumnOverrides());
         return result;
     }
 
