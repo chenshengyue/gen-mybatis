@@ -54,26 +54,26 @@
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <#list propertiesToColumnsKeys as key>
                 <#if key =="${primaryKeys[0]}" && pkAutoIncrement == false>
-                    <if test="${key} !=null">
-                        ${propertiesToColumns["${key}"]},
-                    </if>
+            <if test="${key} !=null">
+                ${propertiesToColumns["${key}"]},
+            </if>
                 <#elseif key !="${primaryKeys[0]}">
-                    <if test="${key} !=null">
-                        ${propertiesToColumns["${key}"]},
-                    </if>
+            <if test="${key} !=null">
+                ${propertiesToColumns["${key}"]},
+            </if>
                 </#if>
             </#list>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <#list beanInfos as beanInfo>
                 <#if beanInfo.propertyName =="${primaryKeys[0]}" && pkAutoIncrement == false>
-                    <if test="${beanInfo.propertyName} !=null">
-                        <@mapperBeanInfo beanInfo/>,
-                    </if>
+            <if test="${beanInfo.propertyName} !=null">
+                <@mapperBeanInfo beanInfo/>,
+            </if>
                 <#elseif beanInfo.propertyName !="${primaryKeys[0]}">
-                    <if test="${beanInfo.propertyName} !=null">
-                        <@mapperBeanInfo beanInfo/>,
-                    </if>
+            <if test="${beanInfo.propertyName} !=null">
+                <@mapperBeanInfo beanInfo/>,
+            </if>
                 </#if>
             </#list>
         </trim>
